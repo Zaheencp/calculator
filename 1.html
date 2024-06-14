@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+        <style>
+            body {
+	background-color: #0e0e0e89;
+	font-family: 'Times New Roman', Times, serif
+}
+
+.container {
+	margin: 60px auto;
+	width: 500px;
+	padding: 40px;
+	text-align: center;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.478);
+}
+
+.header {
+	margin: 40px;
+	color:rgb(255, 255, 255);
+}
+
+input {
+	width: 370px;
+	padding: 10px 40px;
+	font-size: 50px;
+	border-radius: 10px;
+	text-align: right;
+
+	background-color:rgba(0, 0, 0, 0.478);
+	color: rgb(0, 0, 0);
+}
+
+.buttons {
+	margin: auto;
+	width: 500px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+button {
+	padding: 20px; 
+	font-size: 16px;
+	margin: 10px;
+	width: 100px; 
+	height: 100px; 
+	text-align: center;
+	border-radius: 70px;
+	font-weight: 500;
+	background-color:rgba(0, 0, 0, 0.478);
+	color: rgb(112, 15, 15);
+}
+
+        </style>
+		<div class="container">
+			<section class="header">
+				<h1>Calculator</h1>
+				<input id="display" type="text" />
+			</section>
+
+			<section class="buttons">
+				<button onclick="getNum(1)">1</button>
+				<button onclick="getNum(2)">2</button>
+				<button onclick="getNum(3)">3</button>
+				<button onclick="getOp('+')">+</button>
+
+				<button onclick="getNum(4)">4</button>
+				<button onclick="getNum(5)">5</button>
+				<button onclick="getNum(6)">6</button>
+				<button onclick="getOp('-')">-</button>
+
+				<button onclick="getNum(7)">7</button>
+				<button onclick="getNum(8)">8</button>
+				<button onclick="getNum(9)">9</button>
+				<button onclick="getOp('*')">*</button>
+
+				<button onclick="clearDisplay()">CE</button>
+				<button onclick="getNum(0)">0</button>
+				<button onclick="Equals()">=</button>
+				<button onclick="getOp('/')">/</button>
+			</section>
+			<script>
+                let n1
+let n2
+let step = 0
+let operation
+let result = 0
+let n1Arr = []
+let n2Arr = []
+
+let display = document.getElementById('display')
+
+function getNum(num) {
+	if (step === 0 || step === 1) {
+		n1Arr.push(num)
+		step = 1
+		n1 = Number(n1Arr.join(''))
+		display.value = n1
+	} else if (step === 2) {
+		n2Arr.push(num)
+		n2 = Number(n2Arr.join(''))
+		display.value = n2
+	}
+}
+
+function getOp(op) {
+	step = 2
+	operation = op
+}
+
+function Equals() {
+	console.log('first number', n1, 'second number', n2)
+	if (operation === '+') {
+		result = n1 + n2
+		display.value = result
+	} else if (operation === '-') {
+		result = n1 - n2
+		display.value = result
+	} else if (operation === '*') {
+		result = n1 * n2
+		display.value = result
+	} else if (operation === '/') {
+		result = n1 / n2
+		display.value = result
+	}
+}
+
+function clearDisplay() {
+	display.value = 0
+	n1 = null
+	n2 = null
+	step = 0
+	operation = null
+	result = 0
+	n1Arr = []
+	n2Arr = []
+}
+            </script>
+		</div>
+	</body>
+</html>
